@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: Product dimension containing SKU-level attributes used for sales and demand analysis.
+    columns:
+      - name: bulk_sku
+        description: Unique product identifier.
+        tests:
+          - unique 
+          - not_null 
+
+      - name: category
+        description: High-level product category.
+
+      - name: sub_category
+        description: Lower-level product grouping.
+
+      - name: current_9box
+        description: Existing 9-box segmentation label from the source data.
+
+  - name: dim_customer
+    description: Customer dimension containing customer and geographic attributes.
+    columns:
+      - name: customer
+        description: Customer name or identifier.
+        tests:
+          - not_null
+      
+      - name: city 
+        description: Customer city.
+      
+      - name: state 
+        description: Customer state.
+      
+      - name: region 
+        description: Customer region.
+
+  - name: dim_date
+    description: Date dimension built from distinct order dates in the sales fact data.
+    columns:
+      - name: date_day 
+        description: Calendar date.
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_sales
+    description: Transaction-level fact table containing sales, discount, and profit measures.
+    columns:
+      - name: order_id
+        description: Order identifier for each transaction row.
+        tests:
+          - not_null 
+          
+         
+          
+          
