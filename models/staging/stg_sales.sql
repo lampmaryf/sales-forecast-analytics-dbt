@@ -1,0 +1,17 @@
+SELECT
+    "Order_ID" AS order_id,
+    "Bulk_SKU" AS bulk_sku,
+    "Customer_Name" AS customer,
+    "Category" AS category,
+    "Sub_Category" AS sub_category,
+    "City" AS city,
+    "State" AS state,
+    "Region" AS region,
+    "Order_Date" AS order_date,
+    "Month_Year" AS month_year,
+    "Forecast_Date" AS forecast_date,
+    "Sales" AS sales,
+    "Discount" AS discount,
+    "Profit" AS profit,
+    "Current_9Box" AS current_9box,
+FROM {{source('sales_forecast','sales_forecast_raw')}}
