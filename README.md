@@ -9,13 +9,13 @@ The project simulates a real-world forecasting and demand planning workflow wher
 ---
 
 ## Tools Used
-
+```
 - Snowflake (Cloud Data Warehouse)
 - dbt (Data Transformation Framework)
 - SQL
 - Git / GitHub
 - Power BI (used in related analytics project)
-
+```
 ---
 
 ## Data Architecture
@@ -24,7 +24,7 @@ The pipeline follows a layered dbt modeling approach:
 Raw Data → Staging → Dimensions / Fact → Intermediate Models → Analytics Models
 
 ## Data Flow
-'''
+```
 sales_forecast_raw
 ↓
 stg_sales
@@ -37,7 +37,7 @@ fct_sales
 int_sku_monthly_sales
 ↓
 sku_volatility
-'''
+```
 
 ---
 
@@ -45,23 +45,23 @@ sku_volatility
 
 ### Staging Layer
 **stg_sales**
-
+```
 -Cleans and standardizes raw sales data 
 -Renames columns
 -Prepares the dataset for downstream modeling
-
+```
 ---
 
 ### Dimension Models
 **dim_product**
 
 Contains product-level attributes including:
-
+```
 -Bulk SKU
 -Category
 -Sub-category
 -Current 9-box classification
-
+```
 **dim_customer**
 
 Customer dimesion containing customer identifiers and attributes.
@@ -76,12 +76,12 @@ Date dimension derived from order dates.
 **fct_sales**
 
 Transaction-level fact table containing:
-
+```
 -Sales
 -Profit
 -Discount
 -Quantity
-
+```
 This table links to all dimension models.
 
 ---
@@ -97,11 +97,11 @@ Aggregates transaction-level data into **monthly SKU sales totals**.
 **sku_volatility**
 
 Calculates SKU-level demand variability metrics including:
-
+```
 -Average monthly sales
 -Standard deviation
 -Coefficient of variation
-
+```
 These metrics can support **inventory segmentation and forecasting analysis**.
 
 ---
@@ -109,32 +109,33 @@ These metrics can support **inventory segmentation and forecasting analysis**.
 ## Data Quality
 
 Data quality is enforeced using dbt tests:
-
+```
 -'unique' tests on dimension keys
 -'not_null' tests on required fields
-
+```
 ---
 
 ## Project Structure
 
-'''
+```
 models/
-staging/stg_sales.sql
+  staging/
+    stg_sales.sql
 
 marts/
-dim_product.sql
-dim_customer.sql
-dim_date.sql
-fct_sales.sql
+  dim_product.sql
+  dim_customer.sql
+  dim_date.sql
+  fct_sales.sql
 
 analytics/
-int_sku_monthly_sales.sql
-sku_volatility.sql
+  int_sku_monthly_sales.sql
+  sku_volatility.sql
 
 models/schema.yml
 dbt_project.yml
 README.md
-'''
+```
 
 ---
 
