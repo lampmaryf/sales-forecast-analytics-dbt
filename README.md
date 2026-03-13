@@ -21,7 +21,17 @@ The project simulates a real-world forecasting and demand planning workflow wher
 ## Data Architecture
 
 The pipeline follows a layered dbt modeling approach:
-Raw Data → Staging → Dimensions / Fact → Intermediate Models → Analytics Models
+```
+Raw Data
+↓
+Staging
+↓
+Dimensions / Fact Tables
+↓
+Intermediate Models
+↓
+Analytics Models
+```
 
 ## Data Flow
 ```
